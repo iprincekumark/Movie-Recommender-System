@@ -34,7 +34,7 @@ if __name__ == '__main__':
 
     movies = [title[0] for title in movie_titles]
     st.image(
-        "media/1.png",
+        "media/2.png",
         width=700,
     )
 
