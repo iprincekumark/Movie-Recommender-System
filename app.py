@@ -38,7 +38,7 @@ if __name__ == '__main__':
         width=700,
     )
 
-    st.title('Movie Recommendation System ')
+    st.title('Movie Recommendation System')
     st.subheader('by [@iprincekumark](https://github.com/iprincekumark)')
     ''' st.caption("This is a simple Movie Recommender application. You can get the recommendation on based of title name and genres.") '''
     st.write(
@@ -61,8 +61,7 @@ if __name__ == '__main__':
         if movie_select == '--Select the movie you have watched--':
             st.write('')
         else:
-            n = st.slider('Number of recommendation: ',
-                          min_value=5, max_value=15, step=1)
+            n = st.slider('Number of recommendation: ',min_value=5, max_value=15, step=1)
             ''' st.number_input('Number of movies:', min_value=5, max_value=20, step=1) '''
             genres = data[movies.index(movie_select)]
             test_point = genres
@@ -74,8 +73,7 @@ if __name__ == '__main__':
         options = st.multiselect('Select Genres:', genres)
         if options:
             imdb_score = 8  # st.slider('IMDb score:', 1, 10, 8)
-            n = st.slider('Number of recommendation: ',
-                          min_value=5, max_value=15, step=1)
+            n = st.slider('Number of recommendation: ', min_value=5, max_value=15, step=1)
             ''' st.number_input('Number of movies:', min_value=5, max_value=10, step=1) '''
             test_point = [1 if genre in options else 0 for genre in genres]
             test_point.append(imdb_score)
