@@ -62,7 +62,7 @@ if __name__ == '__main__':
             st.write('')
         else:
             n = st.slider('Number of recommendation: ',min_value=5, max_value=15, step=1)
-            ''' st.number_input('Number of movies:', min_value=5, max_value=20, step=1) '''
+            # st.number_input('Number of movies:', min_value=5, max_value=20, step=1)
             genres = data[movies.index(movie_select)]
             test_point = genres
             table = knn(test_point, n)
@@ -74,7 +74,7 @@ if __name__ == '__main__':
         if options:
             imdb_score = 8  # st.slider('IMDb score:', 1, 10, 8)
             n = st.slider('Number of recommendation: ', min_value=5, max_value=15, step=1)
-            ''' st.number_input('Number of movies:', min_value=5, max_value=10, step=1) '''
+            # st.number_input('Number of movies:', min_value=5, max_value=10, step=1) 
             test_point = [1 if genre in options else 0 for genre in genres]
             test_point.append(imdb_score)
             table = knn(test_point, n)
