@@ -1,4 +1,4 @@
-<a href="https://iprincekumark-movie-recommender-system-app-jt6uwr.streamlitapp.com/"><h1>Movie-Recommender-System</h1></a>
+<a href="https://iprincekumark-movie-recommender-system-app-739tpz.streamlitapp.com/"><h1>Movie-Recommender-System</h1></a>
 ## Click on the above text!
 # How to run :-
 Open the cmd with the path where app.py is present then run the following command
