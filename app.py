@@ -1,6 +1,6 @@
 import streamlit as st
 import json
-from Classifier import KNearestNeighbours
+from KNN import KNearestNeighbours
 from operator import itemgetter
 
 
@@ -10,7 +10,6 @@ with open(r'data.json', 'r+', encoding='utf-8') as f:
     data = json.load(f)
 with open(r'titles.json', 'r+', encoding='utf-8') as f:
     movie_titles = json.load(f)
-
 
 
 def knn(test_point, k):
@@ -38,16 +37,30 @@ if __name__ == '__main__':
     movies = [title[0] for title in movie_titles]
     st.title('Movie Recommendation System ')
     st.subheader('by [@iprincekumark](https://github.com/iprincekumark)')
-    apps = ['--Select--', 'Movie based', 'Genres based']
-    app_options = st.selectbox('Select application:', apps)
+    ''' st.caption("This is a simple Movie Recommender application. You can get the recommendation on based of title name and genres.") '''
+    st.write(
+        """
+        ```python
+        THIS IS A SIMPLE MOVIE RECOMMENDER APPLICATION. YOU CAN GET THE 
+        RECOMMENDATION BASED ON ⤵
+        🔰 Title based recommendation.
+        🔰 Genres based recommendation
+        ```
+        """
+    )
+    apps = ['--Select Type Of Recommendation--',
+            'Title based recommendation', 'Genres based recommendation']
+    app_options = st.selectbox('Select Option:', apps)
 
-    if app_options == 'Movie based':
-        movie_select = st.selectbox('Select movie:', ['--Select--'] + movies)
-        if movie_select == '--Select--':
-            st.write('Select a movie')
+    if app_options == 'Title based recommendation':
+        movie_select = st.selectbox(
+            'Select Title:', ['--Select the movie you have watched--'] + movies)
+        if movie_select == '--Select the movie you have watched--':
+            st.write('')
         else:
-            n = st.number_input('Number of movies:',
-                                min_value=5, max_value=20, step=1)
+            n = st.slider('Number of recommendation: ',
+                          min_value=5, max_value=15, step=1)
+            ''' st.number_input('Number of movies:', min_value=5, max_value=20, step=1) '''
             genres = data[movies.index(movie_select)]
             test_point = genres
             table = knn(test_point, n)
@@ -55,21 +68,19 @@ if __name__ == '__main__':
                 # Displays movie title with link to imdb
                 st.markdown(f"[{movie}]({link})")
     elif app_options == apps[2]:
-        options = st.multiselect('Select genres:', genres)
+        options = st.multiselect('Select Genres:', genres)
         if options:
-            imdb_score = st.slider('IMDb score:', 1, 10, 8)
-            n = st.number_input('Number of movies:',
-                                min_value=5, max_value=20, step=1)
+            imdb_score = 8  # st.slider('IMDb score:', 1, 10, 8)
+            n = st.slider('Number of recommendation: ',
+                          min_value=5, max_value=15, step=1)
+            ''' st.number_input('Number of movies:', min_value=5, max_value=10, step=1) '''
             test_point = [1 if genre in options else 0 for genre in genres]
             test_point.append(imdb_score)
             table = knn(test_point, n)
             for movie, link in table:
                 # Displays movie title with link to imdb
                 st.markdown(f"[{movie}]({link})")
-
-        else:
-            st.write("This is a simple Movie Recommender application. "
-                     "You can select the genres and change the IMDb score.")
+        # else:
 
     else:
-        st.write('Select option')
+        st.write('')
