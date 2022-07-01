@@ -3,8 +3,6 @@ import json
 from KNN import KNearestNeighbours
 from operator import itemgetter
 
-
-
 # Load data and movies list from corresponding JSON files
 with open(r'data.json', 'r+', encoding='utf-8') as f:
     data = json.load(f)
@@ -35,6 +33,11 @@ if __name__ == '__main__':
               'Reality-TV', 'Romance', 'Sci-Fi', 'Short', 'Sport', 'Thriller', 'War', 'Western']
 
     movies = [title[0] for title in movie_titles]
+    st.image(
+        "media/1.png",
+        width=700,
+    )
+
     st.title('Movie Recommendation System ')
     st.subheader('by [@iprincekumark](https://github.com/iprincekumark)')
     ''' st.caption("This is a simple Movie Recommender application. You can get the recommendation on based of title name and genres.") '''
